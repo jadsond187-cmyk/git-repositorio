@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Validade</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+
+<div class="logo">
+🦉 Jadson de Souza
+</div>
+
+<nav>
+<a href="index.html">Sobre Mim</a>
+<a href="formacao.html">Formação</a>
+<a href="Portfólio.html">Portfólio</a>
+<a href="contato.html">Contato</a>
+</nav>
+
+<button id="temaBtn">
+🌙 Tema
+</button>
+
+</header>
+  <h1>
+    Controle de Validade
+  </h1>
+  <p>
+    from datetime import datetime
+
+# lista para armazenar os produtos
+produtos = []
+
+def cadastrar_produto():
+    nome = input("Nome do produto: ")
+    validade = input("Data de validade (AAAA-MM-DD): ")
+
+    produtos.append({
+        "nome": nome,
+        "validade": validade
+    })
+
+    print("Produto cadastrado com sucesso!\n")
+
+
+def verificar_produtos():
+    hoje = datetime.now()
+
+    print("\n=== VERIFICAÇÃO DE VALIDADE ===")
+
+    for p in produtos:
+        validade_data = datetime.strptime(p["validade"], "%Y-%m-%d")
+
+        if validade_data >= hoje:
+            print(f"{p['nome']} → VÁLIDO ✔ (vence em {p['validade']})")
+        else:
+            print(f"{p['nome']} → VENCIDO ❌ (vencido em {p['validade']})")
+
+
+def menu():
+    while True:
+        print("\n=== MENU ===")
+        print("1 - Cadastrar produto")
+        print("2 - Verificar validades")
+        print("3 - Sair")
+
+        opcao = input("Escolha: ")
+
+        if opcao == "1":
+            cadastrar_produto()
+        elif opcao == "2":
+            verificar_produtos()
+        elif opcao == "3":
+            print("Saindo do sistema...")
+            break
+        else:
+            print("Opção inválida!")
+
+
+menu()
+  </p>
+  <script src="aprendendo.js"></script>
+</body>
+</html>
