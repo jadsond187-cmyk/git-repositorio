@@ -1,1 +1,6 @@
-date{color: #f10d0d;}
+nav ul{
+    color:aquamarine
+    display:flex;
+    gap:20px;
+    list-style:none;
+}
