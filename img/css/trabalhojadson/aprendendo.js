@@ -1,18 +1,24 @@
 // Tema escuro
 
-const temaBtn =
-document.getElementById("temaBtn");
+const temaBtn = document.getElementById("temaBtn");
 
-if(temaBtn){
+function aplicarTemaSalvo() {
+  const temaSalvo = localStorage.getItem("curriculoTema");
 
-temaBtn.addEventListener(
-"click",
-function(){
+  if (temaSalvo === "dark") {
+    document.body.classList.add("dark");
+  } else {
+    document.body.classList.remove("dark");
+  }
+}
 
-document.body.classList.toggle("dark");
+aplicarTemaSalvo();
 
-});
-
+if (temaBtn) {
+  temaBtn.addEventListener("click", function () {
+    const estaEscuro = document.body.classList.toggle("dark");
+    localStorage.setItem("curriculoTema", estaEscuro ? "dark" : "light");
+  });
 }
 
 // Formulário
@@ -28,47 +34,42 @@ function(event){
 
 event.preventDefault();
 
-let nome =
-document.getElementById("nome").value;
+let nome = document.getElementById("nome").value.trim();
+let email = document.getElementById("email").value.trim();
+let mensagem = document.getElementById("mensagem").value.trim();
 
-let email =
-document.getElementById("email").value;
-
-let mensagem =
-document.getElementById("mensagem").value;
-
-if(
-nome === "" ||
-email === "" ||
-mensagem === ""
-){
-
-alert(
-"Preencha todos os campos."
-);
-
-return;
-
+if(nome === "" || email === "" || mensagem === ""){
+  alert("Preencha todos os campos.");
+  return;
 }
 
-let regex =
-/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 if(!regex.test(email)){
-
-alert(
-"Digite um e-mail válido."
-);
-
-return;
-
+  alert("Digite um e-mail válido.");
+  return;
 }
 
-alert(
-"Mensagem enviada com sucesso!"
-);
+const dados = new FormData(formulario);
 
-formulario.reset();
+fetch("../../php/enviar_contato.php", {
+  method: "POST",
+  body: dados
+})
+.then(function(resposta){
+  return resposta.json();
+})
+.then(function(resultado){
+  if(resultado.success){
+    alert("Mensagem enviada com sucesso!");
+    formulario.reset();
+  } else {
+    alert(resultado.message || "Não foi possível enviar a mensagem.");
+  }
+})
+.catch(function(){
+  alert("Erro ao conectar com o servidor. Certifique-se de que o PHP está rodando.");
+});
 
 });
 
