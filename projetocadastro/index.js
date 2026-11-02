@@ -16,7 +16,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Pasta do currículo e das páginas dos projetos
-const curriculoAlphaDir = path.resolve(__dirname, "..", "curriculoalpha");
+const curriculoAlphaDir = path.resolve(__dirname, "..");
+app.use("/projetocadastro", (req, res) => {
+    res.sendStatus(404);
+});
 app.use(express.static(curriculoAlphaDir));
 
 // Conexão com o MySQL
@@ -75,7 +78,7 @@ app.get("/segredos", (req, res) => {
         res.json(resultados);
     });
 });
-// Nota: o `express.static` serve os arquivos de curriculoalpha.
+// Nota: o `express.static` serve o currículo, sem expor os arquivos do servidor.
 const PORT = 3000;
 
 app.listen(PORT, "0.0.0.0", () => {
