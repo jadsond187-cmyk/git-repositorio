@@ -1,62 +1,77 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+body{
+
+    background:#e60000;
+
+    font-family:Arial;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:100vh;
+
 }
 
-#header {
-    background-color: #1e67f4;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 20px;
+.container{
+
+    background:white;
+
+    padding:30px;
+
+    width:350px;
+
+    border-radius:10px;
+
+    box-shadow:0 0 10px gray;
+
 }
 
-#logo {
-    font-weight: bold;
+h1{
+
+    text-align:center;
+
 }
 
-.nav-links {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: inline-flex;
-    gap: 20px;
+input{
+
+    width:100%;
+
+    padding:12px;
+
+    margin:10px 0;
+
 }
 
-a {
-    text-decoration: none;
-    color: white;
+button{
+
+    width:100%;
+
+    padding:12px;
+
+    background:#007BFF;
+
+    color:white;
+
+    border:none;
+
+    cursor:pointer;
+
 }
 
-.hero {
-    text-align: center;
-    padding: 50px 20px;
-    background-color: #ffffff;
-    color: #343a40;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+button:hover{
+
+    background:#0056b3;
+
 }
 
-.hero h1 {
-    color: #25265e;
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
+#mensagem{
 
-.hero p {
-    color: #414273;
-    font-size: 1.2em;
-    margin-bottom: 20px;
-}
+    margin-top:15px;
 
-.button {
-    padding: 10px 20px;
-    font-size: 1em;
-    background-color: #0556F3;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    text-align:center;
 
+    color:green;
+
+}

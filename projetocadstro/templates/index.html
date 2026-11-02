@@ -1,32 +1,59 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Sistema de Cadastro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Cadastro Local</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; }
+        .container { max-width: 1000px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #333; margin-bottom: 20px; text-align: center; }
+        .formulario { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px; margin-bottom: 20px; }
+        input { padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        button { padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn-cadastrar { background: #4CAF50; color: white; }
+        .btn-cadastrar:hover { background: #45a049; }
+        .btn-consultar { background: #2196F3; color: white; }
+        .btn-consultar:hover { background: #0b7dda; }
+        .btn-editar { background: #FF9800; color: white; padding: 5px 10px; font-size: 12px; }
+        .btn-editar:hover { background: #e68900; }
+        .btn-deletar { background: #f44336; color: white; padding: 5px 10px; font-size: 12px; }
+        .btn-deletar:hover { background: #da190b; }
+        .btn-salvar { background: #4CAF50; color: white; padding: 5px 10px; font-size: 12px; }
+        .btn-cancelar { background: #999; color: white; padding: 5px 10px; font-size: 12px; }
+        .mensagem { padding: 10px; margin-bottom: 10px; border-radius: 4px; display: none; }
+        .mensagem.sucesso { background: #d4edda; color: #155724; display: block; }
+        .mensagem.erro { background: #f8d7da; color: #721c24; display: block; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #f0f0f0; font-weight: bold; }
+        tr:hover { background: #f9f9f9; }
+        .acoes { white-space: nowrap; }
+        #resultado { display: none; }
+        .hidden { display: none; }
+        .edicao { background: #fffacd; }
+    </style>
 </head>
 <body>
+<div class="container">
+    <h1>📋 Sistema de Cadastro Local</h1>
+    
+    <div id="mensagem" class="mensagem"></div>
+    
+    <div class="formulario">
+        <input type="hidden" id="id_edicao">
+        <input id="nome" type="text" placeholder="Nome">
+        <input id="idade" type="number" placeholder="Idade" min="1" max="150">
+        <input id="cidade" type="text" placeholder="Cidade">
+        <button class="btn-cadastrar" onclick="cadastrar()">Cadastrar</button>
+    </div>
+    
+    <button class="btn-consultar" onclick="consultar()" style="width: 100%; padding: 10px;">🔍 Consultar Dados</button>
+    
+    <div id="resultado"></div>
+</div>
 
-<h2>Cadastrar Pessoa</h2>
-
-<form action="/cadastrar" method="POST">
-    <input type="text" name="nome" placeholder="Nome" required>
-    <input type="number" name="idade" placeholder="Idade" required>
-    <input type="text" name="cidade" placeholder="Cidade" required>
-    <button type="submit">Cadastrar</button>
-</form>
-
-<hr>
-
-<h2>Pessoas Cadastradas</h2>
-
-<ul>
-    {% for p in pessoas %}
-        <li>
-            <b>{{ p[1] }}</b> - {{ p[2] }} anos - {{ p[3] }}
-            <a href="/deletar/{{ p[0] }}">Excluir</a>
-        </li>
-    {% endfor %}
-</ul>
-<script src="apontador.js"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

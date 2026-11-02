@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "nome": "jadson",
+        "categoria": "objeto",
+        "lote": "1",
+        "validade": "2027-04-12",
+        "quantidade": 23,
+        "observacoes": "nenhuma"
+    }
+]
